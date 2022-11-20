@@ -3,7 +3,7 @@ library(ggplot2)
 
 data <- read.csv("https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv")
 
-## Section 2  ---- 
+## Section 2  ----
 #----------------------------------------------------------------------------#
 # avg_white_prison_pop
 # avg_black_prison_pop
@@ -79,6 +79,8 @@ get_year_jail_pop_states <- function(states) {
   return(growth_by_state)
 }
 
+states <- get_year_jail_pop_states(c('AK', 'CA'))
+
 # This function plots the returned data frame from the above function for the states calculating the total jail population in graph of year vs yearly jail population, colored by state.
 plot_jail_pop_for_states <- function(states) {
   jail_pop_chart <- ggplot(get_year_jail_pop_states(states)) +
@@ -94,7 +96,7 @@ plot_jail_pop_for_states <- function(states) {
 # <variable comparison that reveals potential patterns of inequality>
 #----------------------------------------------------------------------------#
 
-# This function creates a data frame of the black population percentage as a variable and the black jail population percentage as a variable, as well as the total jail population.
+# This function creates a data frame of the black population percentage as a variable and the black jail population percentage as a variable, as well as the pctg of black americans in the county.
 inequality_chart <- function() {
   inequality <- data %>%
     filter(year == 2018) %>%
@@ -111,19 +113,19 @@ inequality_chart <- function() {
   return (inequality)
 }
 
-# This function takes the above chart and plots it on a graph of the black jail percentage vs the total jail population, colored by state. 
+# This function takes the above chart and plots it on a graph of the black jail percentage vs the percentage of black americans in the county, colored by state.
 graph_inequalities <- function() {
-  jail_pop_chart <- ggplot(inequality_chart) +
+  jail_pop_chart <- ggplot(inequality_chart()) +
     geom_point(mapping = aes(
       x = black_jail_percent,
-      y = total_jail_pop, color = state
-    ) +
+      y = black_pop_percent, color = state
+    )) +
     labs(
       x = "Percent of Jail Population that are Black",
-      y = "Total Jail Population",
-      title = "Black Jail Population vs Total Jail Population",
+      y = "Percentage of Total Population that is Black",
+      title = "Black Jail Population % vs Total Black Population %",
       caption = "Percentage of Black Jail
-      Population vs the Total Jail Population per County"
+      Population vs the Percentage Black Population per County"
     )
   return (jail_pop_chart)
 }
@@ -135,7 +137,7 @@ graph_inequalities <- function() {
 
 library("stringr")
 
-# Function that maps the jail population vs total jail population of black americans across the United States.
+# Function that maps the black jail population vs totalblack americans across the states.
 plot_map <- function() {
 
   # get state lat long data prepared to do a join
@@ -146,7 +148,7 @@ plot_map <- function() {
   # similar to inequality chart but make it more condensed for mapping
   usmap_chart <- data %>%
     filter(year == 2018) %>%
-    mutate(black_jail_percent = (black_jail_pop / total_jail_pop) * 100) %>%
+    mutate(black_jail_percent = (black_jail_pop / black_pop_15to64) * 100) %>%
     filter(black_jail_percent < 100) %>%
     select(state, black_jail_percent) %>%
     group_by(state) %>%
@@ -167,8 +169,8 @@ plot_map <- function() {
   map <- map + scale_fill_continuous(
     name = "Black Prison Population Percentage",
     low = "white", high = "red", na.value = "grey50"
-  ) + labs(title = "Black Prison Population Percentage vs Total Prison Population")
-  
+  ) + labs(title = "Black Prison Population Percentage vs Total Black Population")
+
   return (map)
 }
 
