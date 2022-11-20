@@ -19,25 +19,48 @@ An important topic in the United States has been the subject of inequality and r
 Racism and inequality are at the forefront of America's conciousness and news during the 21st century, and a great place to see these on full display is in the prison system and the prison population. This is due to the implementation of apparatus like over-policing, hotspot policing, and the war on drugs. Using data provided by the Vera Institute, we will be able to portray and show this inequality within the prison and justice system. After looking at the dataset, some questions that I thought would help portray this inequality include:
 1. What is the average black prison population in a county compared to the average white one?
 2. What is the average female prison population in a county compared to the average male one?
-3. How does the percentage of Black Americans in the United States compare to the percentage of Black Americans in the United States prison population?  
+3. How does the percentage of Black Americans in the United States compare to the percentage of Black Americans in the United States prison population?
 
 ## Data Summary
 
-## Growth of the U.S. Prison population
+Some variables and facets of the data that I was interested in looking at was comparing some details about the prison population, mainly the averages. 
+
+First, I analyzed the average male vs female prison population. The average male prison population across the United States during 2018 is `r avg_male_prison_pop`, as opposed to the average female population across the United States during the same time being `r avg_female_prison_pop`. It is clear that the male prison population is far larger than the female prison population, although this fact alone cannot be used to derive much conclusions about inequality.
+
+The other variables I looked at were the average white vs black prison population per county in the United States. The average white prison population across the country is `r avg_white_prison_pop`, while the black prison population is `r avg_black_prison_pop`. You can see that there seems to be a higher prison population of white people in comparison to black people nationwide. An issue with this comparison is that the white population in the United States is the majority, so it could be thought of as expected for them to also be the highest percentage of the prison population in total numbers.
+
+
+### Growth of the U.S. Prison population
 ```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
 plot_jail_pop_for_us()
 ```
-The above graph shows the growth of the prison population in the United States between 1970 and 2018.
 
-## Growth of Prison Population by State (west coast)
+The above graph shows the growth of the prison population in the United States between 1970 and 2018. Somethings to point out:
+1. The United states prison population grew tremendously from 1980-2010.
+2. Prior to this growth, the population was stagnant.
+3. Growth has slowed during the 2010s.
+
+### Growth of Prison Population by State (west coast)
 ```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
-get_year_jail_pop_states(c("WA", "OR", "CA", "AK", "HI"))
+plot_jail_pop_for_states(c("WA", "OR", "CA", "AK", "HI"))
 ```
 
-## Comparing the Black Prison Population Percentage to the Overall Percentage in the Population
+The above graph shows the growth of the prison population in the states along the Pacific coast (West Coast + Alaska and Hawaii) between 1970 and 2018. Some things I noticed:
+1. California, having the largest population, has the largest prison population.
+2. All states have a noticeable growth.
 
+### Comparing the Black Prison Population Percentage to Total Black Pop Percentage
+```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
+graph_inequalities()
+```
 
-## Geographic Distribution of the Black Prison Population vs Overall Population map in the United States
+The above graph shows every counties black prison population's percentage of the total population compared to the percentage of black americans in the county. For this graph, the elements that are lower and to the right indicate inequality, as this means a large percentage of the prison population being black even though they comprise ultimately a small portion of the actual county.
+
+### Map of Black Prison Population vs Total Black Population
 ```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
 plot_map()
 ```
+
+The above map shows each state mapped for the average percentage of the black prison population in each county as opposed to the total black population in each county.
+
+From the map, you can see that the regions of the United States in which the black prison population makes up a significant percentage of the total black American population is spread out across the country but there are clear standouts in Utah, New Mexico, and Kentucky. This could indicate some form of racial inequality in these states, as well as potentially a high rate of incarceration in general.
