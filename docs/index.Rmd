@@ -1,10 +1,9 @@
 ---
-title: 'Your A4 Report Title (TODO: Revise title)'
-author: "Your Name"
-date: "2022-11-01"
+title: "US Prison System Analysis"
+author: "Wesley Nguyen"
+date: "2022-11-20"
 output:
   html_document: default
-  pdf_document: default
 ---
 
 ```{r echo=FALSE, eval=TRUE, message=FALSE}
@@ -13,11 +12,32 @@ source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
+## Abstract
+An important topic in the United States has been the subject of inequality and racism. Worldwide, the United States has one of the highest incarcerated populations in the world. Through the below graphs and analysis, it will be seen how this population of incarcerated individuals portray an image of stark inequality and division within the nation.
+
+## Introduction
+Racism and inequality are at the forefront of America's conciousness and news during the 21st century, and a great place to see these on full display is in the prison system and the prison population. This is due to the implementation of apparatus like over-policing, hotspot policing, and the war on drugs. Using data provided by the Vera Institute, we will be able to portray and show this inequality within the prison and justice system. After looking at the dataset, some questions that I thought would help portray this inequality include:
+1. What is the average black prison population in a county compared to the average white one?
+2. What is the average female prison population in a county compared to the average male one?
+3. How does the percentage of Black Americans in the United States compare to the percentage of Black Americans in the United States prison population?  
+
+## Data Summary
+
+## Growth of the U.S. Prison population
+```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
+plot_jail_pop_for_us()
+```
+The above graph shows the growth of the prison population in the United States between 1970 and 2018.
+
+## Growth of Prison Population by State (west coast)
+```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
+get_year_jail_pop_states(c("WA", "OR", "CA", "AK", "HI"))
+```
+
+## Comparing the Black Prison Population Percentage to the Overall Percentage in the Population
+
+
+## Geographic Distribution of the Black Prison Population vs Overall Population map in the United States
 ```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
 plot_map()
 ```
-
-[TODO ... other sections ... See Canvas for details]
-
-_All the very best with your work!_
-
