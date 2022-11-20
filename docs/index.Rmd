@@ -7,7 +7,6 @@ output:
 ---
 
 ```{r echo=FALSE, eval=TRUE, message=FALSE}
-getwd()
 source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
