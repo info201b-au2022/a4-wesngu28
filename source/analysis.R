@@ -93,7 +93,7 @@ plot_jail_pop_for_states <- function(states) {
 
 ## Section 5  ----
 #----------------------------------------------------------------------------#
-# <variable comparison that reveals potential patterns of inequality>
+# How does the percent of the black incarcerated population compare to the percentage of total population that is black?
 #----------------------------------------------------------------------------#
 
 # This function creates a data frame of the black population percentage as a variable and the black jail population percentage as a variable, as well as the pctg of black americans in the county.
@@ -132,12 +132,14 @@ graph_inequalities <- function() {
 
 ## Section 6  ----
 #----------------------------------------------------------------------------#
-# <a map shows potential patterns of inequality that vary geographically>
+# Map of Black Prison Population as opposed to total Black population,
+# average of all counties in a state
 #----------------------------------------------------------------------------#
 
 library("stringr")
+library("mapproj")
 
-# Function that maps the black jail population vs totalblack americans across the states.
+# Function that maps the black jail population vs total black americans across the states.
 plot_map <- function() {
 
   # get state lat long data prepared to do a join
@@ -169,7 +171,8 @@ plot_map <- function() {
   map <- map + scale_fill_continuous(
     name = "Black Prison Population Percentage",
     low = "white", high = "red", na.value = "grey50"
-  ) + labs(title = "Black Prison Population Percentage vs Total Black Population")
+  ) + labs(title = "Black Prison Population Percentage vs Total Black Population",
+           x = "Longitude", y = "Latitude") + coord_map()
 
   return (map)
 }

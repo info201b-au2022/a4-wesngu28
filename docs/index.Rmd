@@ -15,7 +15,12 @@ source("../source/analysis.R")
 An important topic in the United States has been the subject of inequality and racism. Worldwide, the United States has one of the highest incarcerated populations in the world. Through the below graphs and analysis, it will be seen how this population of incarcerated individuals portray an image of stark inequality and division within the nation.
 
 ## Introduction
-Racism and inequality are at the forefront of America's conciousness and news during the 21st century, and a great place to see these on full display is in the prison system and the prison population. This is due to the implementation of apparatus like over-policing, hotspot policing, and the war on drugs. Using data provided by the Vera Institute, we will be able to portray and show this inequality within the prison and justice system. After looking at the dataset, some questions that I thought would help portray this inequality include:
+Racism and inequality are at the forefront of America's conciousness and news during the 21st century, and a great place to see these on full display is in the prison system and the prison population. This is due to the implementation of apparatus like over-policing, hotspot policing, and the war on drugs. Using data provided by the Vera Institute, we will be able to portray and show this inequality within the prison and justice system. 
+
+From this dataset, I would say that the direct stakeholders are those in the position to act with the data, including law enforcement, those in charge of the prisons, and social groups. Remembering that direct stakeholders are those that actually interact with the data, the indirect stakeholders are the incarcerated people in the dataset and the people close to them. As it usually tends to be, the values and rights of the indirect stakeholders tend to be swept under the wayside, so we must work to maintain values of both privacy, transparency, and accountability.
+
+After looking at the dataset, some questions that I thought would help portray this inequality include:
+
 1. What is the average black prison population in a county compared to the average white one?
 2. What is the average female prison population in a county compared to the average male one?
 3. How does the percentage of Black Americans in the United States compare to the percentage of Black Americans in the United States prison population?
@@ -27,6 +32,8 @@ Some variables and facets of the data that I was interested in looking at was co
 First, I analyzed the average male vs female prison population. The average male prison population across the United States during 2018 is `r avg_male_prison_pop`, as opposed to the average female population across the United States during the same time being `r avg_female_prison_pop`. It is clear that the male prison population is far larger than the female prison population, although this fact alone cannot be used to derive much conclusions about inequality.
 
 The other variables I looked at were the average white vs black prison population per county in the United States. The average white prison population across the country is `r avg_white_prison_pop`, while the black prison population is `r avg_black_prison_pop`. You can see that there seems to be a higher prison population of white people in comparison to black people nationwide. An issue with this comparison is that the white population in the United States is the majority, so it could be thought of as expected for them to also be the highest percentage of the prison population in total numbers.
+
+Both of these demonstrate a problem in dataset analysis that a lot of people tend to use. A lot of news sites and reporters like to report total counts, which could easily misconstrue a dataset and make people draw the wrong conclusions. From here, you would think that more white people are being imprisoned than black people, thus no racial inequality exists and if it does it would be towards whites, but this is total count analysis and not representative of how much white and black make up the american total population.
 
 
 ### Growth of the U.S. Prison population
@@ -53,7 +60,9 @@ The above graph shows the growth of the prison population in the states along th
 graph_inequalities()
 ```
 
-The above graph shows every counties black prison population's percentage of the total population compared to the percentage of black americans in the county. For this graph, the elements that are lower and to the right indicate inequality, as this means a large percentage of the prison population being black even though they comprise ultimately a small portion of the actual county.
+The question that I wanted to ask with the above graph is: How does the percent of the black incarcerated population compare to the percentage of total population that is black? I asked this to see if some counties had high rates of black incarceration but a low total of black americans in total, as this would be a measure of inequality.
+
+The graph shows every counties black prison population's percentage of the total population compared to the percentage of black americans in the county. For this graph, the elements that are lower and to the right indicate inequality, as this means a large percentage of the prison population being black even though they comprise ultimately a small portion of the actual county.
 
 ### Map of Black Prison Population vs Total Black Population
 ```{r, echo=FALSE,warning=FALSE,echo=FALSE,message=FALSE}
