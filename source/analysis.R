@@ -56,6 +56,7 @@ year_jail_pop <- get_year_jail_pop()
 plot_jail_pop_for_us <- function() {
   jail_pop_chart <- ggplot(get_year_jail_pop()) +
     geom_col(mapping = aes(x = year, y = year_jail_pop)) +
+    scale_y_continuous(labels = scales::comma) +
     labs(x = "Year", y = "Jail Population Per Year", title = "Yearly Growth
     of Prison Population from 1970-2018")
   return(jail_pop_chart)
@@ -75,16 +76,16 @@ get_year_jail_pop_states <- function(states) {
   growth_by_state <- data %>%
     filter(state %in% states) %>%
     group_by(state, year) %>%
-    summarise(year_jail_pop = sum(total_pop, na.rm = TRUE))
+    summarise(year_jail_pop = sum(total_jail_pop, na.rm = TRUE))
   return(growth_by_state)
 }
 
-states <- get_year_jail_pop_states(c('AK', 'CA'))
 
 # This function plots the returned data frame from the above function for the states calculating the total jail population in graph of year vs yearly jail population, colored by state.
 plot_jail_pop_for_states <- function(states) {
   jail_pop_chart <- ggplot(get_year_jail_pop_states(states)) +
     geom_line(mapping = aes(x = year, y = year_jail_pop, color = state)) +
+    scale_y_continuous(labels = scales::comma) +
     labs(x = "Year", y = "Jail Population Per Year", title = "Yearly Growth
     of Prison Population", caption = "Yearly Growth of Prison Population
     from 1970-2018 in Selected States")
